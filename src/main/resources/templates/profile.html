@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Ứng dụng chăm sóc sức khỏe </title>
+
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-wysiwyg -->
+    <link href="/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+    <!-- Select2 -->
+    <link href="/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Switchery -->
+    <link href="/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+    <!-- starrr -->
+    <link href="/vendors/starrr/dist/starrr.css" rel="stylesheet">
+    <!-- bootstrap-daterangepicker -->
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico">
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111">
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <!-- Custom Theme Style -->
+    <link href="/build/css/custom.min.css" rel="stylesheet">
+    <link href="/build/css/custom.css" rel="stylesheet">
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Health Care</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix" >
+                    <div class="pic-holder profile_img" style="width: 57px;height: 57px; float: left;">
+                        <img  th:src="${'/avatars/'+staff.getAvatar().getName()}" class="pic">
+                    </div>
+                    <div class="profile_info">
+                        <span>Xin chào,</span>
+                        <h2 th:text="${staff.getFullName()}"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br/>
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>Công cụ</h3>
+                        <ul class="nav side-menu">
+                            <li><a><i class="fa fa-edit"></i> Đăng bài <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/staff/newPost">Đăng bài mới</a></li>
+                                    <li><a href="/staff/listPosted">Bài viết đã đăng</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a><i class="fa fa-table"></i> Danh sách yêu cầu <span
+                                    class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="/staff/requests">Tất cả Yêu cầu</a></li>
+                                    <li><a href="/staff/post/request">Yêu cầu theo bài viết</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <div class="nav toggle">
+                    <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                </div>
+                <nav class="nav navbar-nav">
+                    <ul class=" navbar-right">
+                        <li id="user-btn" class="nav-item dropdown open" style="padding-left: 15px;">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                <img th:src="${'/avatars/'+staff.getAvatar().getName()}">
+                                <span th:text="${staff.getFullName()}"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/staff/profile">Hồ sơ</a>
+                                <a class="dropdown-item" href="javascript:">
+                                    <span>Cài đặt</span>
+                                </a>
+                                <a class="dropdown-item" href="javascript:;">Trợ giúp</a>
+                                <div id="logout"><a class="dropdown-item" href="/staff/login"><i class="fa fa-sign-out pull-right"></i>Đăng xuất</a></div>
+                            </div>
+                        </li>
+
+                        <li id="notice" role="presentation" class="nav-item dropdown open" style="top: 5px">
+                            <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1"
+                               data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span th:if="${quantity > 0}" th:text="${quantity}" class="badge bg-green">6</span>
+                            </a>
+                            <ul class="dropdown-menu list-unstyled msg_list" role="menu"
+                                aria-labelledby="navbarDropdown1">
+                                <li th:each="notice : ${notices}" class="nav-item">
+                                    <a style="display: flex" class="dropdown-item">
+                                        <span class="image"><img src="images/img.jpg"/></span>
+                                        <span>
+                            <span style="font-weight: 600" th:text="${notice.getTitle()}">John Smith</span>
+                                            <span th:text="${notice.getContent()}" class="message">
+                          </span>
+                          </span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Hồ Sơ</h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5  form-group row pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                              <button class="btn btn-secondary" type="button">Go!</button>
+                          </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-9 col-sm-9 ">
+                        <div class="x_panel">
+
+                            <div class="x_content">
+                                <br />
+                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-2 col-sm-2 label-align" for="first-name">Họ và Tên <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8 ">
+                                            <input th:value="${staff.getFullName()}" type="text" id="first-name"  required="required" class="form-control" placeholder="Họ và Tên">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-2 col-sm-2 label-align">Giới tính</label>
+                                        <div class="col-md-8 col-sm-8 d-flex align-items-center">
+                                            <div id="gender" class="btn-group" data-toggle="buttons">
+                                                <div>
+                                                    Nam:
+                                                    <input type="radio" class="flat" name="gender" id="genderM" th:checked="${staff.getGender().toString() == 'Male'}" value="0" /> Nữ:
+                                                    <input type="radio" class="flat" name="gender" id="genderF" th:checked="${staff.getGender().toString() == 'Female'}" value="1" /> Khác:
+                                                    <input type="radio" class="flat" name="gender" id="genderO" th:checked="${staff.getGender().toString() == 'Other'}" value="2" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <label class="col-form-label col-md-2 col-sm-2 label-align">Ngày sinh <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-8 col-sm-8">
+                                            <input id="birthday" class="date-picker form-control" type="date" th:value="${#dates.format(staff.getBirth(), 'yyy-MM-dd')}"  required="required"/>
+
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <div class="col-form-label col-md-2 col-sm-2 label-align" style="width: 120px" for="password">Địa chỉ</div>
+                                        <div class="col-md-8 col-sm-8">
+                                            <select class="form-control selecter-city col-md-3" style="margin-right: 8px;" aria-label="Default select example">
+                                                <option value="-1" th:text="${staff.getAddress() != null ? staff.getAddress().getCity() : 'Tỉnh, Thành Phố'}" selected>Tỉnh, Thành Phố</option>
+                                            </select>
+                                            <select class="form-control selecter-district col-md-3" style="margin-right: 8px;" aria-label="Default select example">
+                                                <option value="-1" th:text="${staff.getAddress() != null ? staff.getAddress().getDistrict : 'Quận, Huyện'}" selected>Quận, Huyện</option>
+                                            </select>
+                                            <select  class="form-control selecter-ward col-md-3" aria-label="Default select example">
+                                                <option value="-1" th:text="${staff.getAddress() != null ?  staff.getAddress().getWard()  : 'Xã, Phường'}" selected>Xã, Phường</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <div class="col-form-label col-md-2 col-sm-2 label-align" style="width: 120px" for="password">Email</div>
+                                        <div class="col-md-8 col-sm-8">
+                                            <input type="email" th:value="${staff.getEmail()}" class="form-control has-feedback-left" readonly placeholder="Email">
+                                            <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <div class="col-form-label col-md-2 col-sm-2 label-align" style="width: 120px" for="password">Số điện thoại</div>
+                                        <div class="col-md-8 col-sm-8">
+                                            <input type="tel" th:value="${staff.getPhone()}" class="form-control has-feedback-left" id="phonenumber" placeholder="+84">
+                                            <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
+                                        </div>
+                                    </div>
+                                    <div class="item form-group">
+                                        <div class="col-form-label col-md-2 col-sm-2 label-align" style="width: 120px" >Mô tả về bản thân</div>
+                                        <div th:text="${staff.getBiography()}" id="editor-one" class="col-md-8 col-sm-8 editor-wrapper placeholderText" contenteditable="true"></div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="item form-group" style="width: 100%">
+                                        <div class="offset-md-3 d-flex justify-content-end" style="width: 100%">
+                                            <div class="btn btn-primary">Cập Nhật</div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-3">
+                        <div class="profile-pic-wrapper">
+                            <div class="pic-holder">
+                                <!-- uploaded pic shown here -->
+                                <img id="profilePic" class="pic" th:src="${'/avatars/'+staff.getAvatar().getName()}">
+
+                                <Input class="uploadProfileInput" type="file" name="profile_pic" id="newProfilePhoto" accept="image/*" style="opacity: 0;" />
+                                <label for="newProfilePhoto" class="upload-file-block">
+                                    <div class="text-center">
+                                        <div class="mb-2">
+                                            <i class="fa fa-camera fa-2x"></i>
+                                        </div>
+                                        <div class="text-uppercase">
+                                            Update <br /> Profile Photo
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            </hr>
+                            <div class="font-weight-bold">Ảnh đại diện</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+
+<script src="/vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- FastClick -->
+<script src="/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="/vendors/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/vendors/moment/min/moment.min.js"></script>
+<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="/vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="/vendors/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="/vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="/vendors/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="/vendors/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="/vendors/starrr/dist/starrr.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/build/js/custom.min.js"></script>
+<script src="/build/js/custom.js"></script>
+<script src="/build/js/profile.js"></script>
+</body>
+</html>
